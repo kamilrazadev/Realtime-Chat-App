@@ -5,6 +5,8 @@ const Chats = () => {
   return (
     <div>
       <ChatCard />
+      <ChatCard />
+      <ChatCard />
     </div>
   );
 };
