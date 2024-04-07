@@ -3,8 +3,15 @@ import ChatCard from "./ChatCard";
 
 const Chats = () => {
   return (
-    <div>
+    <div className="overflow-y-auto">
       <ChatCard />
+      <ChatCard />
+      <ChatCard />
+      <ChatCard />
+      <ChatCard />
+      <ChatCard />
+      <ChatCard />
+
       <ChatCard />
       <ChatCard />
     </div>
