@@ -2,6 +2,7 @@ import React from "react";
 import ConversationHeader from "./ConversationHeader";
 import Messages from "./Messages";
 import FormInput from "./FormInput";
+import { useAuthContext } from "../../context/AuthContext";
 
 const ChatArea = () => {
   const noChatSelected = true;
@@ -27,9 +28,13 @@ const ChatArea = () => {
 export default ChatArea;
 
 const NoChatSelectedUI = () => {
+  const { authState } = useAuthContext();
+
   return (
-    <div className="h-screen w-full flex flex-col justify-center items-center">
-      <p>Welcome, John Doe</p>
+    <div className="h-screen w-full flex flex-col justify-center items-center text-[20px]">
+      <p>
+        Welcome, <span className="text-white capitalize">{authState.fullName}</span>
+      </p>
       <p>Select a chat to start messaging</p>
     </div>
   );
