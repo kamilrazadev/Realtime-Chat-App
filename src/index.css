@@ -8,10 +8,6 @@
   width: 6px; /* Set the width of the scrollbar */
 }
 
-::-webkit-scrollbar-track {
-  /* background-color: #f1f1f1; */
-}
-
 /* Style for the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
   background-color: #90909040; /* Gray */
