@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessagesSkeleton from "../skeletons/MessagesSkeleton";
-import useListenMessage from "../../hooks/useLIstenMessage";
+import useListenMessage from "../../hooks/useListenMessage";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();
