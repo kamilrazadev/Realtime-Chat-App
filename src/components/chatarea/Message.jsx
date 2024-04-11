@@ -1,19 +1,37 @@
 import React from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import useConversation from "../../zustand/useConversation";
+import extractFormattedTime from "../../utils/extractFormattedTime";
 
-const Message = () => {
+const Message = ({ message }) => {
+  const { authState } = useAuthContext();
+  const { selectedConversation } = useConversation();
+
+  const isMyMessage = message?.senderId === authState?._id;
+  const formattedTime = extractFormattedTime(message?.createdAt);
+
   return (
-    <div className="chat chat-end">
+    <div className={`chat ${isMyMessage ? "chat-end" : "chat-start"}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
           <img
             alt="Tailwind CSS chat bubble component"
-            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+            src={
+              isMyMessage
+                ? authState?.profilePic
+                : selectedConversation?.profilePic
+            }
           />
         </div>
       </div>
-      <div className="chat-bubble bg-[#268e4d] text-white">
-        It was said that you would, destroy the Sith, not join them.
+      <div
+        className={`chat-bubble ${
+          isMyMessage ? "bg-[#268e4d]" : "bg-slate-600"
+        } text-white`}
+      >
+        {message?.message}
       </div>
+      <p className="text-[10px]">{formattedTime}</p>
     </div>
   );
 };

@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
+import useConversation from "../../zustand/useConversation";
 
-const ChatCard = ({
-  conversation,
-  selectedConversationId,
-  setSelectedConversationId,
-}) => {
-  const [isSelected, setIsSelected] = useState(false);
+const ChatCard = ({ conversation }) => {
+  const { selectedConversation, setSelectedConversation } = useConversation();
 
-  useEffect(() => {
-    setIsSelected(selectedConversationId === conversation._id);
-  }, [selectedConversationId]);
+  const isSelected = selectedConversation?._id === conversation?._id;
 
   return (
     <div
       className={`flex gap-3 p-2 border-b border-gray-600 ${
         isSelected ? "bg-gray-700" : "bg-transparent"
       }  hover:bg-gray-700 cursor-pointer transition-all`}
-      onClick={() => {
-        localStorage.setItem(
-          "selectedConversation",
-          JSON.stringify(conversation)
-        );
-        setSelectedConversationId(conversation._id);
-      }}
+      onClick={() => setSelectedConversation(conversation)}
     >
       <div className="avatar online">
         <div className="w-14 rounded-full">

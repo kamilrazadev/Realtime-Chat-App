@@ -3,12 +3,15 @@ import ConversationHeader from "./ConversationHeader";
 import Messages from "./Messages";
 import FormInput from "./FormInput";
 import { useAuthContext } from "../../context/AuthContext";
+import useConversation from "../../zustand/useConversation";
 
 const ChatArea = () => {
-  const noChatSelected = true;
+  const { selectedConversation } = useConversation();
+
+  const noChatSelected = selectedConversation || false;
   return (
     <div className="flex-1 h-screen">
-      {noChatSelected ? (
+      {!noChatSelected ? (
         <NoChatSelectedUI />
       ) : (
         <>
@@ -33,7 +36,8 @@ const NoChatSelectedUI = () => {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center text-[20px]">
       <p>
-        Welcome, <span className="text-white capitalize">{authState.fullName}</span>
+        Welcome,{" "}
+        <span className="text-white capitalize">{authState.fullName}</span>
       </p>
       <p>Select a chat to start messaging</p>
     </div>

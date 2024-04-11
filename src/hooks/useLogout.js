@@ -5,10 +5,12 @@ import toast from "react-hot-toast";
 
 import { serverUrl } from "../appConstants";
 import { useAuthContext } from "../context/AuthContext";
+import useConversation from "../zustand/useConversation";
 
 const useLogout = () => {
   const [loading, setLoading] = useState(false);
   const { setAuthState } = useAuthContext();
+  const { setSelectedConversation } = useConversation();
 
   const logout = async () => {
     setLoading(true);
@@ -17,6 +19,7 @@ const useLogout = () => {
 
       Cookies.remove("authData");
       setAuthState(null);
+      setSelectedConversation(null);
     } catch (error) {
       toast.error(error.message);
     } finally {

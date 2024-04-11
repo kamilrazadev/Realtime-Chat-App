@@ -21,6 +21,7 @@ const useSignUp = () => {
       const data = res.data;
 
       Cookies.set("authData", JSON.stringify(data));
+      Cookies.set("token", data.token);
       setAuthState(data);
     } catch (error) {
       if (error?.response?.data?.error) {
