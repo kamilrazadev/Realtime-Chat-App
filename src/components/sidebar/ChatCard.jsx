@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useConversation from "../../zustand/useConversation";
+import { useSocketContext } from "../../context/SocketContext";
 
 const ChatCard = ({ conversation }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
+  const { onlineUsers } = useSocketContext();
 
   const isSelected = selectedConversation?._id === conversation?._id;
+  const isOnline = onlineUsers.includes(conversation?._id);
 
   return (
     <div
@@ -13,7 +16,7 @@ const ChatCard = ({ conversation }) => {
       }  hover:bg-gray-700 cursor-pointer transition-all`}
       onClick={() => setSelectedConversation(conversation)}
     >
-      <div className="avatar online">
+      <div className={`avatar ${isOnline ? "online" : ""}`}>
         <div className="w-14 rounded-full">
           <img src={conversation?.profilePic} />
         </div>
