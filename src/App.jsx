@@ -6,9 +6,19 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import SignUp from "./pages/signup/SignUp";
 import { useAuthContext } from "./context/AuthContext";
+import axios from "axios";
+import { serverUrl } from "./appConstants";
 
 const App = () => {
   const { authState } = useAuthContext();
+
+  useEffect(() => {
+    const homeApi = async () => {
+      const res = await axios.get(`${serverUrl}/`);
+      console.log(res.data);
+    };
+    homeApi();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
