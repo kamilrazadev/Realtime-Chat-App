@@ -12,7 +12,7 @@ const Home = () => {
         <Sidebar />
       </div>
       <div
-        className={`flex-1 h-screen flex ${
+        className={`h-screen flex ${
           selectedConversation
             ? "max-[660px]:fixed max-[660px]:top-0 max-[660px]:left-0 max-[660px]:z-50 max-[660px]:w-full"
             : "max-[660px]:hidden"

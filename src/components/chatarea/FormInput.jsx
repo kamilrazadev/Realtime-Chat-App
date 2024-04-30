@@ -14,7 +14,7 @@ const FormInput = () => {
 
   return (
     <form
-      className="w-full flex gap-2 bg-[#1D232A] p-2"
+      className="w-full flex gap-2 bg-[#1D232A] p-2 fixed bottom-0 left-0"
       onSubmit={handleSendMessage}
     >
       <input
